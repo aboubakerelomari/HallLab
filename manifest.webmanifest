@@ -1,0 +1,20 @@
+{
+  "name": "HallLab — Van der Pauw & effet Hall",
+  "short_name": "HallLab",
+  "description": "Caractérisation de couches semi-conductrices (Si, GaAs, Ge) : Van der Pauw, effet Hall, résistivité ↔ dopage. Fonctionne hors ligne.",
+  "lang": "fr",
+  "dir": "ltr",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f6f8",
+  "theme_color": "#0a62c2",
+  "categories": ["education", "productivity", "utilities"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
