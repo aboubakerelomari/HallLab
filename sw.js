@@ -1,6 +1,6 @@
 // HallLab — service worker : tout est mis en cache pour fonctionner hors ligne.
 // Après une modification des fichiers, augmente VERSION pour forcer la mise à jour.
-const VERSION = 'halllab-v1';
+const VERSION = 'halllab-v2';
 
 const ASSETS = [
   './',

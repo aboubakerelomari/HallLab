@@ -164,3 +164,19 @@ Ouvre d'abord l'adresse `https://TON-PSEUDO.github.io/HallLab/` une fois avec In
 ## Vérifier le mode hors ligne
 
 Après l'installation, active le mode avion et ouvre HallLab : tout doit fonctionner (calculs, historique, export). Sur ordinateur, dans Chrome : outils de développement (F12) → onglet **Application** → **Service workers** → case **Offline**, puis recharge la page.
+
+## Version Android (APK)
+
+Le dossier `android-app/` emballe la PWA dans une vraie application Android avec [Capacitor](https://capacitorjs.com) : tous les fichiers sont dans l'APK, qui marche sans Internet. Dans l'APK, l'export CSV/JSON ouvre le menu de partage d'Android au lieu de télécharger.
+
+Outils nécessaires (déjà installés sur l'ordinateur de développement) : Java 21 dans `~/.local/opt`, SDK Android dans `~/Android/Sdk`, variables dans `~/Android/env.sh`.
+
+Refaire l'APK après une modification de l'app :
+
+```bash
+source ~/Android/env.sh && cd ~/HallLab/android-app && npm run apk && cp android/app/build/outputs/apk/debug/app-debug.apk ../apk-dist/HallLab.apk
+```
+
+L'APK obtenu est signé avec une clé de débogage : il suffit pour un usage personnel ou au labo, mais pas pour le Play Store. Pour l'installer, copie `apk-dist/HallLab.apk` sur le téléphone, ouvre-le, et autorise une fois l'installation depuis cette source. Pour mettre à jour, installe le nouvel APK par-dessus : l'historique est conservé.
+
+Icônes du lanceur Android : `python3 tools/make_android_icons.py`.

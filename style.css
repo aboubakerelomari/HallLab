@@ -57,6 +57,11 @@
   box-sizing: border-box;
 }
 
+/* l'attribut hidden doit gagner sur les display des composants (.btn, etc.) */
+[hidden] {
+  display: none !important;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;

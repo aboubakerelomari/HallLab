@@ -849,7 +849,28 @@ function toCSV(records) {
   return '﻿' + lines.join('\r\n');
 }
 
+// Dans l'APK (Capacitor), on écrit le fichier puis on ouvre le partage Android.
+const native = () => window.Capacitor?.isNativePlatform?.() === true;
+
+async function shareNative(filename, text) {
+  const { Filesystem, Share } = window.Capacitor.Plugins;
+  const { uri } = await Filesystem.writeFile({ path: filename, data: text, directory: 'CACHE', encoding: 'utf8' });
+  try {
+    await Share.share({ title: filename, files: [uri] });
+  } catch (err) {
+    if (!/cancel/i.test(err?.message ?? '')) throw err;
+  }
+}
+
 async function shareOrDownload(filename, text, mime) {
+  if (native()) {
+    try {
+      await shareNative(filename, text);
+    } catch (err) {
+      toast(`Export impossible : ${err.message}`);
+    }
+    return;
+  }
   const blob = new Blob([text], { type: mime });
   const mobile = window.matchMedia('(pointer: coarse)').matches;
   if (mobile && navigator.canShare) {
@@ -1090,7 +1111,8 @@ function init() {
   computeAll();
   showTab(settings.tab);
 
-  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  // Dans l'APK, les fichiers sont déjà embarqués : pas besoin du service worker.
+  if ('serviceWorker' in navigator && location.protocol !== 'file:' && !native()) {
     navigator.serviceWorker.register('./sw.js').catch((err) => console.warn('Service worker :', err));
   }
 }

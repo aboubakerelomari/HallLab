@@ -1,0 +1,19 @@
+{
+  "name": "halllab-android",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "copy-web": "node scripts/copy-web.js",
+    "sync": "node scripts/copy-web.js && cap sync android",
+    "apk": "node scripts/copy-web.js && cap sync android && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.3",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/filesystem": "8.1.5",
+    "@capacitor/share": "8.0.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.3"
+  }
+}

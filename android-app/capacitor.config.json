@@ -1,0 +1,8 @@
+{
+  "appId": "io.github.aboubakerelomari.halllab",
+  "appName": "HallLab",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#f4f6f8"
+  }
+}
